@@ -1,0 +1,2952 @@
+{
+    "info": {
+        "_postman_id": "7ad22661-8807-406b-aec0-34a46b671aac",
+        "name": "dbt Cloud Object Management API Endpoints",
+        "description": "### Introduction\n\nThis collection contains a set of endpoints that can be used for managing resources in dbt Cloud. The endpoints documented here can be used to address use cases such as:\n\n*   Creating, triggering, and monitoring dbt Cloud jobs\n*   Migrating dbt Cloud resources (projects, environments, jobs, etc.) among dbt Cloud accounts.\n*   Managing user and group permissions\n    \n\n### Obtaining your dbt Cloud API Key\n\nThe dbt Cloud API uses tokens to authenticate requests, and supports two different types of tokens:\n\n*   User Tokens\n    *   Enable the same permissions associated with your user license in the UI\n    *   Retrieve from your User Profile (top right icon) > API Access\n*   Service Tokens\n    *   Enable permissions based on [enterprise permission sets](https://docs.getdbt.com/docs/dbt-cloud/access-control/enterprise-permissions).\n    *   Retrieve from Account Settings > Service Tokens > Create Service Token\n\nTokens obtained using either of the methods above are used in the Authentication header of requests sent to the dbt Cloud API.\n\n### Base URL for Multi and Single-Tenant Deployments\n\nIf your dbt Cloud account is deployed on our multi-tenant infrastructure, the base URL for the API will look like `https://cloud.getdbt.com`\n\nSingle Tenant base URLs look a bit different, for example: `https://[environment].[customer].getdbt.com`\n\nIf you have questions about the base URL to use for your deployment, reach out to [support@getdbt.com](mailto:support@getdbt.com)",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Retrieval URIs",
+            "item": [
+                {
+                    "name": "Retrieve Accounts",
+                    "id": "627aa4f9-301b-4587-b136-10faabcb8062",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v2/accounts/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Projects for given Account",
+                    "id": "0247793a-17d2-42ab-9bba-0d6d7a7d86a0",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Environments for given Project",
+                    "id": "a897080a-7238-4676-ad0d-530a7a6b1794",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/environments/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "environments",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Groups for a Given Account",
+                    "id": "eef21601-f3fb-47bc-9b23-b730fd1bace9",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/groups/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "groups",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Gitlab Integration Groups",
+                    "id": "2bf9cc74-ac64-4062-8d67-58291c7154a9",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/integrations/gitlab/groups/?account_id={{account_id}}",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "integrations",
+                                "gitlab",
+                                "groups",
+                                ""
+                            ],
+                            "query": [
+                                {
+                                    "key": "account_id",
+                                    "value": "{{account_id}}"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Connections for given Project",
+                    "id": "a7133f66-10ce-44d0-a539-e7009120548a",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/connections/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "connections",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Credentials for given Project",
+                    "id": "055ab40d-7edc-4eb2-aa42-cd9d033eae2b",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/credentials/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "credentials",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Repositories for given Project",
+                    "id": "595144b0-9684-46ec-806e-113bc13915f1",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/repositories/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "repositories",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Jobs for given Account**",
+                    "id": "44ec6f56-e162-4da0-a00b-ebae7c04bade",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v2/accounts/{{account_id}}/jobs/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{account_id}}",
+                                "jobs",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Feature Flags for given Account",
+                    "id": "c9b0d908-b242-402b-aa10-0d1e5c1ff96c",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/feature-flag/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "feature-flag",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Job Run Information",
+                    "id": "c18b1422-b865-498c-acc2-f44edf042d04",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "https://cloud.getdbt.com/api/v2/accounts/{{account_id}}/runs/{{run_id}}/?include_related=[\"run_steps\"]",
+                            "protocol": "https",
+                            "host": [
+                                "cloud",
+                                "getdbt",
+                                "com"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{account_id}}",
+                                "runs",
+                                "{{run_id}}",
+                                ""
+                            ],
+                            "query": [
+                                {
+                                    "key": "include_related",
+                                    "value": "[\"run_steps\"]"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Job Manifest",
+                    "id": "44a7e766-fcc8-4a5e-b27a-8fe72d2ffa59",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v2/accounts/{{account_id}}/jobs/runs/{{run_id}}/artifacts/manifest.json",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{account_id}}",
+                                "jobs",
+                                "runs",
+                                "{{run_id}}",
+                                "artifacts",
+                                "manifest.json"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Job Catalog",
+                    "id": "71308c00-0e2d-4195-9e73-7ee206ec9504",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "",
+                                "value": "",
+                                "type": "text",
+                                "disabled": true
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v2/accounts/{{account_id}}/jobs/runs/{{run_id}}/artifacts/catalog.json",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{account_id}}",
+                                "jobs",
+                                "runs",
+                                "{{run_id}}",
+                                "artifacts",
+                                "catalog.json"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Job Logs",
+                    "id": "97e8ac74-7226-45cd-89d0-6cccd49380bf",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v2/accounts/{{account_id}}/runs/{{run_id}}/steps/{{step_id}}/?include_related=[\"debug_logs\"]",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{account_id}}",
+                                "runs",
+                                "{{run_id}}",
+                                "steps",
+                                "{{step_id}}",
+                                ""
+                            ],
+                            "query": [
+                                {
+                                    "key": "include_related",
+                                    "value": "[\"debug_logs\"]"
+                                }
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Users from Account",
+                    "id": "4ef6754b-0510-4d5e-ba1e-aa0337f9e89e",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v2/accounts/{{account_id}}/users/\n",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{account_id}}",
+                                "users",
+                                "\n"
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Retrieve Permissions Associated with Service Token",
+                    "id": "184cd84f-565f-4b42-a940-1d16d796219a",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                            "raw": "https://cloud.getdbt.com/api/v3/accounts/{{account_id}}/service-tokens/{{service_token_id}}/permissions/\n",
+                            "protocol": "https",
+                            "host": [
+                                "cloud",
+                                "getdbt",
+                                "com"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "service-tokens",
+                                "{{service_token_id}}",
+                                "permissions",
+                                "\n"
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "8d86d942-e5e2-418c-ab56-8ba508352522",
+            "description": "This folder contains requests related to retrieving the current state of dbt Cloud objects",
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "id": "95b687a8-e777-4471-8fe5-31743e1ba2c4",
+                        "type": "text/javascript",
+                        "exec": [
+                            ""
+                        ]
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "id": "defd5065-19e7-43b6-adaf-6482dfd96a3f",
+                        "type": "text/javascript",
+                        "exec": [
+                            ""
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Create URIs",
+            "item": [
+                {
+                    "name": "Create Project",
+                    "id": "b55d3fdd-1c12-41f9-9ef4-faf47e11a263",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"name\": \"My Awesome Project\",\n    \"dbt_project_subdirectory\": null,\n    \"account_id\": {{account_id}},\n    \"connection_id\": null,\n    \"repository_id\": null\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Environment",
+                    "id": "3118a5f4-952d-4570-aa57-84f65d83bc66",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"credentials_id\": {{credentials_id}}, /*optional, create credentials first and then pass ID here*/\n    \"name\": \"Deployment Environment 2\",\n    \"dbt_version\": \"1.0.4\",\n    \"type\": \"deployment\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/environments/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "environments",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Environment Variables - Project / Environment Level",
+                    "id": "d68b1eae-e848-4ee9-a62c-31c3ddc1a34d",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"env_var\": {\n        \"name\": \"2\",\n        \"ids\": [],\n        \"new_name\": \"DBT_TEST_VAR\",\n        \"project\": \"here\",\n        \"Development\": \"over_here\",\n        \"Deploy\": \"now_here\"\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/environment-variables/bulk/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "environment-variables",
+                                "bulk",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Environment Variables - Developer Level",
+                    "id": "d804aa95-9624-419c-b912-daf013ebb694",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"user_id\": {{user_id}},\n    \"type\": \"user\",\n    \"name\": \"DBT_TEST_VAR\",\n    \"raw_value\": \"my_something_else\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/environment-variables/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "environment-variables",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Environment Variables - Job Level",
+                    "id": "15529393-6fa2-419d-89dc-ca083d4c276e",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"job_definition_id\": {{job_id}},\n    \"type\": \"job\",\n    \"name\": \"DBT_TEST\",\n    \"raw_value\": \"test-again\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/environment-variables/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "environment-variables",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Connection - Snowflake",
+                    "id": "d7673a57-d9ac-45c3-88f4-158fcc42e1d0",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"name\": \"test\",\n    \"type\": \"snowflake\",\n    \"details\": {\n        \"account\": \"<your-snowflake-account-id>\",\n        \"role\": \"<your-snowflake-role\",\n        \"database\": \"<your-snowflake-database\",\n        \"warehouse\": \"<your-snowflake-warehouse\",\n        \"oauth_client_id\": null,\n        \"oauth_client_secret\": null,\n        \"client_session_keep_alive\": false,\n        \"allow_sso\": false\n    },\n    \"state\": 1,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/connections/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "connections",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Connection - Bigquery",
+                    "id": "59e3fddc-d188-4d46-a7b5-129cb754e53c",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"name\": \"<connection-name>\",\n    \"type\": \"bigquery\",\n    \"details\": {\n        \"retries\": 1,\n        \"maximum_bytes_billed\": 0,\n        \"location\": null,\n        \"timeout_seconds\": 300,\n        \"project_id\": \"<google-cloud-project-id>\",\n        \"private_key_id\": \"<service-account-private-key-id>\",\n        \"private_key\": \"-----BEGIN PRIVATE KEY-----<private-key-text>-----END PRIVATE KEY-----\\n\",\n        \"client_email\": \"<service-account-email>\",\n        \"client_id\": \"<service-account-client-id>\",\n        \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n        \"token_uri\": \"https://oauth2.googleapis.com/token\",\n        \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n        \"client_x509_cert_url\": \"https://www.googleapis.com/robot/v1/metadata/x509/<service-account-email>\",\n        \"application_id\": null,\n        \"application_secret\": null\n    },\n    \"state\": 1,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/connections/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "connections",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Connection - Redshift",
+                    "id": "d05ae463-57fb-4b79-a109-0040393fd59c",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"name\": \"<connection-name>\",\n    \"type\": \"redshift\",\n    \"details\": {\n        \"hostname\": \"<your-redshift-hostname>\",\n        \"port\": 5439,\n        \"dbname\": \"dev\",\n        \"tunnel_enabled\": true\n    },\n    \"state\": 1,\n    \"created_by_id\": {{user_id}},\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/connections/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "connections",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Connection - Databricks",
+                    "id": "ef609d24-22cf-4fa2-bfcc-0f5c04ef58a0",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"state\": 1,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"created_by_id\": {{user_id}},\n    \"name\": \"<connection-name>\",\n    \"type\": \"adapter\",\n    \"details\": {\n        \"adapter_id\": 1628,\n        \"connection_details\": {\n            \"fields\": {\n                \"type\": {\n                    \"metadata\": {\n                        \"label\": \"Connection type\",\n                        \"description\": \"\",\n                        \"field_type\": \"hidden\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"spark\"\n                },\n                \"method\": {\n                    \"metadata\": {\n                        \"label\": \"Method\",\n                        \"description\": \"\",\n                        \"field_type\": \"select\",\n                        \"encrypt\": false,\n                        \"options\": [\n                            {\n                                \"label\": \"ODBC\",\n                                \"value\": \"odbc\"\n                            }\n                        ],\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"odbc\"\n                },\n                \"host\": {\n                    \"metadata\": {\n                        \"label\": \"Hostname\",\n                        \"description\": \"The hostname of the Databricks account to connect to.\",\n                        \"field_type\": \"text\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false,\n                            \"pattern\": \"databricks_hostname\"\n                        }\n                    },\n                    \"value\": \"your-databricks-hostname.databricks.com\"\n                },\n                \"port\": {\n                    \"metadata\": {\n                        \"label\": \"Port\",\n                        \"description\": \"The port to connect to Databricks for this connection.\",\n                        \"field_type\": \"number\",\n                        \"encrypt\": false,\n                        \"validation\": {}\n                    },\n                    \"value\": 443\n                },\n                \"cluster\": {\n                    \"metadata\": {\n                        \"label\": \"Cluster\",\n                        \"description\": \"The ID of the cluster to connect to (required if using a cluster)\",\n                        \"field_type\": \"text\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"\"\n                },\n                \"endpoint\": {\n                    \"metadata\": {\n                        \"label\": \"Endpoint\",\n                        \"description\": \"The ID of the endpoint to connect to (required if using Databricks SQL Analytics)\",\n                        \"field_type\": \"text\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"<your-endpoint-id>\"\n                },\n                \"driver\": {\n                    \"metadata\": {\n                        \"label\": \"Driver\",\n                        \"description\": \"\",\n                        \"field_type\": \"hidden\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"/opt/simba/spark/lib/64/libsparkodbc_sb64.so\"\n                },\n                \"organization\": {\n                    \"metadata\": {\n                        \"label\": \"Organization\",\n                        \"description\": \"Optional\",\n                        \"field_type\": \"text\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"\"\n                },\n                \"user\": {\n                    \"metadata\": {\n                        \"label\": \"User\",\n                        \"description\": \"Optional\",\n                        \"field_type\": \"text\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"<your-username>\"\n                }\n            },\n            \"field_order\": [\n                \"type\",\n                \"method\",\n                \"host\",\n                \"port\",\n                \"organization\",\n                \"cluster\",\n                \"endpoint\",\n                \"user\",\n                \"driver\"\n            ]\n        }\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/connections/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "connections",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Developer Credentials - Snowflake",
+                    "id": "d79601d8-583a-41cf-bd8c-2713bcf77df2",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"state\": 1,\n    \"threads\": 1,\n    \"target_name\": \"default\",\n    \"type\": \"snowflake\",\n    \"schema\": \"dbt_username\",\n    \"auth_type\": \"password\",\n    \"user\": \"<username>\",\n    \"password\": \"<password>\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/credentials/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "credentials",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Developer Credentials - Databricks",
+                    "id": "b1d0f2a0-67a1-4590-be68-fb6596d3d8b2",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"type\": \"adapter\",\n    \"state\": 1,\n    \"target_name\": \"default\",\n    \"threads\": 1,\n    \"adapter_id\": 1628,\n    \"credential_details\": {\n        \"fields\": {\n            \"token\": {\n                \"metadata\": {\n                    \"label\": \"Token\",\n                    \"description\": \"Personalized user token.\",\n                    \"field_type\": \"text\",\n                    \"encrypt\": true,\n                    \"validation\": {\n                        \"required\": false\n                    }\n                },\n                \"value\": \"<your-token-text>\"\n            },\n            \"schema\": {\n                \"metadata\": {\n                    \"label\": \"Schema\",\n                    \"description\": \"Users schema.\",\n                    \"field_type\": \"text\",\n                    \"encrypt\": false,\n                    \"validation\": {\n                        \"required\": false\n                    }\n                },\n                \"value\": \"<your-development-schema>\"\n            }\n        },\n        \"field_order\": []\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/credentials/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "credentials",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Developer Credentials - Bigquery",
+                    "id": "fb16d268-7b3c-4920-99a7-9b2aff0743b2",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"type\": \"bigquery\",\n    \"state\": 1,\n    \"threads\": 4,\n    \"schema\": \"<your-development-schema>\",\n    \"target_name\": \"default\",\n    \"created_at\": null,\n    \"updated_at\": null,\n    \"username\": null,\n    \"has_refresh_token\": false\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/credentials/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "credentials",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Developer Credentials - Redshift",
+                    "id": "0db99232-a677-4d4c-ae14-27cdde7c2ed6",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": {{credentials_id}},\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"type\": \"redshift\",\n    \"state\": 1,\n    \"threads\": 1,\n    \"username\": \"<your-username>\",\n    \"default_schema\": \"dbt_<your-username>\",\n    \"target_name\": \"default\",\n    \"created_at\": \"2021-07-14 19:30:31.228947+00:00\",\n    \"updated_at\": \"2021-07-14 19:30:31.228966+00:00\",\n    \"password\": \"<your-password>\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/credentials/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "credentials",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Repository - Gitlab Application",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "id": "6cf78d48-1583-4a43-b840-1e50902e3874",
+                                "exec": [
+                                    ""
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "id": "da0590e4-8ad5-4829-96fc-38750f8aa8a3",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"remote_url\":\"<gitlab-group>/<gitlab-project>\",\n    \"gitlab_project_id\":{{gitlab_project_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/repositories/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "repositories",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Repository - Github Application",
+                    "id": "61d51d58-a74d-4a6d-ba6d-4a3b51af8a24",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"remote_url\": \"<your-git-url>\",\n    \"github_installation_id\": {{github_installation_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/repositories/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "repositories",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Repository with Deploy Key",
+                    "id": "ce29df42-144c-406d-a16c-1d0da151c890",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"remote_url\":\"<your-git-clone-ssh-url>\",\n    \"git_clone_strategy\": \"deploy_key\",\n    \"github_installation_id\": null,\n    \"token_str\": null\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/repositories/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "repositories",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Job",
+                    "id": "09349b37-265e-46ca-a804-c06c43194faf",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"id\": null,\n    \"environment_id\": {{environment_id}},\n    \"name\": \"api-created-job\",\n    \"dbt_version\": \"1.0.1\",\n    \"triggers\": {\n      \"github_webhook\": false,\n      \"schedule\": false,\n      \"custom_branch_only\": false\n    },\n    \"execute_steps\": [\n      \"dbt build\"\n    ],\n    \"settings\": {\n      \"threads\": 1,\n      \"target_name\": \"default\"\n    },\n    \"state\": 1,\n    \"generate_docs\": false,\n    \"schedule\": {\n        \"date\": {\n            \"type\": \"every_day\"\n        },\n        \"time\": {\n            \"type\": \"every_hour\",\n            \"interval\": 1\n        }\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v2/accounts/{{account_id}}/jobs/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{account_id}}",
+                                "jobs",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Associate Connection with Project",
+                    "id": "7423ea31-8dfc-4223-8141-5e6a672feb9d",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n  \"name\": \"<your-project-name>\",\n  \"account_id\": {{account_id}},\n  \"repository_id\": null, \n  \"connection_id\": {{connection_id}},\n  \"id\": {{project_id}}, \n  \"created_at\": \"2021-02-15 16:41:39.275343+00:00\", \n  \"updated_at\": \"2021-02-15 16:41:39.275372+00:00\", \n  \"skipped_setup\": false,\n  \"state\": 1,\n  \"dbt_project_subdirectory\": null,\n  \"connection\": null,\n  \"repository\": null,\n  \"group_permissions\": [],\n  \"docs_job_id\": null,\n  \"freshness_job_id\": null\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create User Groups",
+                    "id": "6c61bae7-a53a-432d-8dec-95f7390b768e",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"account_id\":{{account_id}},\n    \"name\":\"<your-group-name>\",\n    \"assign_by_default\":false,\n    \"sso_mapping_groups\":[\"<your-sso-group-a>\", \"<your-sso-group-b>\"]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": ""
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Assign User to Groups",
+                    "id": "f8e4a9d3-c578-41a5-ba64-7f0b63997928",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "/* Use the same endpoint to remove a user from certain groups, updating the desired_group_ids item */\n{\n    \"user_id\":1,\n    \"desired_group_ids\":[1, 2, 3]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/v3/accounts/{{account_id}}/assign-groups/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "assign-groups",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Assign Group Permissions",
+                    "id": "61b2118b-8cf5-4729-a367-35432e110996",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[\n    {\n        \"group_id\": {{group_id}},\n        \"account_id\": {{account_id}},\n        \"permission_set\": \"developer\",\n        \"project_id\": {{project_id}},\n        \"all_projects\": false\n    }\n]",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/v3/accounts/{{account_id}}/group-permissions/<group-id>/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "group-permissions",
+                                "<group-id>",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Associate Repository with Project",
+                    "id": "79db956f-9e5b-44b8-a3af-33e70c7fd701",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"your-project-name\",\n    \"account_id\": {{account_id}},\n    \"id\": {{project_id}},\n    \"repository_id\": {{repository_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/v3/accounts/{{account_id}}/projects/{{project_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Service Token",
+                    "id": "311a811d-ed6d-4d42-a88d-8bb0611ee574",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                                "key": "Authorization",
+                                "value": "Token <dbt-cloud-api-token>",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"name\": \"My Awesome Service Token\",\n    \"state\": 1,\n    \"account_id\": {{account_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/v3/accounts/{{account_id}}/service-tokens/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "service-tokens",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Rotate User Token",
+                    "id": "a9d83661-f254-4ef8-8111-417f21727ab9",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                                "key": "Authorization",
+                                "value": "Token <dbt-cloud-api-token>",
+                                "type": "text"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"name\": \"My User Token\",\n    \"state\": 1,\n    \"account_id\": {{account_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/v2/users/{{user_id}}/apikey/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "v2",
+                                "users",
+                                "{{user_id}}",
+                                "apikey",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "6700e2bf-a22f-4a10-abd0-e6c636968e74"
+        },
+        {
+            "name": "Update URIs",
+            "item": [
+                {
+                    "name": "Update Project",
+                    "id": "5f8dc6c5-bf28-44ba-9385-2f23acf589bd",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"My Awesome Project\",\n    \"account_id\": {{account_id}},\n    \"repository_id\": {{repository_id}},\n    \"connection_id\": {{connection_id}},\n    \"id\": {{project_id}},\n    \"created_at\": \"2020-11-17 22:53:24.144162+00:00\",\n    \"updated_at\": \"{{$timestamp}}\",\n    \"skipped_setup\": false,\n    \"state\": 1,\n    \"dbt_project_subdirectory\": null,\n    \"connection\": {\n        \"id\": {{connection_id}},\n        \"account_id\": {{account_id}},\n        \"project_id\": {{project_id}},\n        \"created_by_id\": 1,\n        \"name\": \"Snowflake\",\n        \"type\": \"snowflake\",\n        \"details\": {\n            \"allow_sso\": false,\n            \"client_session_keep_alive\": true,\n            \"account\": \"<your-snowflake-account-id>\",\n            \"role\": \"<your-snowflake-role>\",\n            \"database\": \"<your-snowflake-database>\",\n            \"warehouse\": \"<your-snowflake-warehouse>\"\n        },\n        \"state\": 1,\n        \"created_at\": \"2020-11-17 23:03:50.218303+00:00\",\n        \"updated_at\": \"{{$timestamp}}\"\n    },\n    \"repository\": null,\n    \"group_permissions\": [],\n    \"docs_job_id\": null,\n    \"freshness_job_id\": null\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Environment",
+                    "id": "e744ea6d-e3a1-46f1-8b8b-b1e333fbb2cc",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": {{environment_id}},\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"credentials_id\": {{credentials_id}},\n    \"name\": \"My Awesome Environment\",\n    \"dbt_version\": \"{{dbt_version}}\",\n    \"type\": \"deployment\",\n    \"use_custom_branch\": false,\n    \"custom_branch\": null,\n    \"supports_docs\": false,\n    \"state\": 1,\n    \"created_at\": \"2020-11-17 21:19:54.735392+00:00\",\n    \"updated_at\": \"{{$timestamp}}\",\n    \"project\": null,\n    \"jobs\": null,\n    \"credentials\": {\n        \"id\": 6,\n        \"account_id\": {{account_id}},\n        \"project_id\": {{project_id}},\n        \"type\": \"snowflake\",\n        \"state\": 1,\n        \"threads\": 1,\n        \"schema\": \"test\",\n        \"target_name\": \"default\",\n        \"created_at\": null,\n        \"updated_at\": null\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/1/environments/6/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "1",
+                                "environments",
+                                "6",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Connection - Snowflake",
+                    "id": "91f9b22e-482a-47e0-9e62-0209429228e7",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": {{connection_id}},\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"created_by_id\": 1,\n    \"name\": \"Snowflake\",\n    \"type\": \"snowflake\",\n    \"details\": {\n        \"allow_sso\": false,\n        \"client_session_keep_alive\": true,\n        \"account\": \"your-snowflake-account-id\",\n        \"role\": \"your-snowflake-role\",\n        \"database\": \"your-snowflake-database\",\n        \"warehouse\": \"your-snowflake-warehouse\"\n    },\n    \"state\": 1,\n    \"created_at\": \"2020-11-17 15:10:32.336815+00:00\",\n    \"updated_at\": \"{{$timestamp}}\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/connections/{{connection_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "connections",
+                                "{{connection_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Connection - Bigquery",
+                    "id": "9b726d36-c2d3-4de0-a4ef-3b4e4d8ddc26",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": {{connection_id}},\n    \"name\": \"Bigquery\",\n    \"type\": \"bigquery\",\n    \"details\": {\n        \"retries\": 1,\n        \"location\": null,\n        \"timeout_seconds\": 300,\n        \"project_id\": \"your-gcp-project\",\n        \"private_key_id\": \"service-account-private-key-id\",\n        \"private_key\": \"service-account-private-key\",\n        \"client_email\": \"service-account-email\",\n        \"client_id\": \"service-account-client-id\",\n        \"auth_uri\": \"https://accounts.google.com/o/oauth2/auth\",\n        \"token_uri\": \"https://oauth2.googleapis.com/token\",\n        \"auth_provider_x509_cert_url\": \"https://www.googleapis.com/oauth2/v1/certs\",\n        \"client_x509_cert_url\": \"service-account-cert-url\",\n        \"application_id\": \"oauth-application-id\",\n        \"application_secret\": \"oauth-application-secret\"\n    },\n    \"state\": 1,\n    \"created_by_id\": {{user_id}},\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/connections/{{connection_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "connections",
+                                "{{connection_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Connection - Databricks",
+                    "id": "97ec692c-7cc5-4ca8-80ab-c29fbf67fb2d",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": {{connection_id}},\n    \"state\": 1,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"created_by_id\": {{user_id}},\n    \"name\": \"<connection-name>\",\n    \"type\": \"adapter\",\n    \"details\": {\n        \"adapter_id\": 1628,\n        \"connection_details\": {\n            \"fields\": {\n                \"type\": {\n                    \"metadata\": {\n                        \"label\": \"Connection type\",\n                        \"description\": \"\",\n                        \"field_type\": \"hidden\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"spark\"\n                },\n                \"method\": {\n                    \"metadata\": {\n                        \"label\": \"Method\",\n                        \"description\": \"\",\n                        \"field_type\": \"select\",\n                        \"encrypt\": false,\n                        \"options\": [\n                            {\n                                \"label\": \"ODBC\",\n                                \"value\": \"odbc\"\n                            }\n                        ],\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"odbc\"\n                },\n                \"host\": {\n                    \"metadata\": {\n                        \"label\": \"Hostname\",\n                        \"description\": \"The hostname of the Databricks account to connect to.\",\n                        \"field_type\": \"text\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false,\n                            \"pattern\": \"databricks_hostname\"\n                        }\n                    },\n                    \"value\": \"your-databricks-hostname.databricks.com\"\n                },\n                \"port\": {\n                    \"metadata\": {\n                        \"label\": \"Port\",\n                        \"description\": \"The port to connect to Databricks for this connection.\",\n                        \"field_type\": \"number\",\n                        \"encrypt\": false,\n                        \"validation\": {}\n                    },\n                    \"value\": 443\n                },\n                \"cluster\": {\n                    \"metadata\": {\n                        \"label\": \"Cluster\",\n                        \"description\": \"The ID of the cluster to connect to (required if using a cluster)\",\n                        \"field_type\": \"text\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"\"\n                },\n                \"endpoint\": {\n                    \"metadata\": {\n                        \"label\": \"Endpoint\",\n                        \"description\": \"The ID of the endpoint to connect to (required if using Databricks SQL Analytics)\",\n                        \"field_type\": \"text\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"<your-endpoint-id>\"\n                },\n                \"driver\": {\n                    \"metadata\": {\n                        \"label\": \"Driver\",\n                        \"description\": \"\",\n                        \"field_type\": \"hidden\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"/opt/simba/spark/lib/64/libsparkodbc_sb64.so\"\n                },\n                \"organization\": {\n                    \"metadata\": {\n                        \"label\": \"Organization\",\n                        \"description\": \"Optional\",\n                        \"field_type\": \"text\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"\"\n                },\n                \"user\": {\n                    \"metadata\": {\n                        \"label\": \"User\",\n                        \"description\": \"Optional\",\n                        \"field_type\": \"text\",\n                        \"encrypt\": false,\n                        \"validation\": {\n                            \"required\": false\n                        }\n                    },\n                    \"value\": \"<your-username>\"\n                }\n            },\n            \"field_order\": [\n                \"type\",\n                \"method\",\n                \"host\",\n                \"port\",\n                \"organization\",\n                \"cluster\",\n                \"endpoint\",\n                \"user\",\n                \"driver\"\n            ]\n        }\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/connections/{{connection_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "connections",
+                                "{{connection_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Connection - Redshift",
+                    "id": "8181e4a9-9892-4a42-9fc2-f9750af8459d",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": {{connection_id}},\n    \"name\": \"<connection-name>\",\n    \"type\": \"redshift\",\n    \"details\": {\n        \"hostname\": \"<your-redshift-hostname>\",\n        \"port\": 5439,\n        \"dbname\": \"dev\",\n        \"tunnel_enabled\": true\n    },\n    \"state\": 1,\n    \"created_by_id\": {{user_id}},\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/connections/{{connection_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "connections",
+                                "{{connection_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Developer Credentials - Snowflake",
+                    "id": "02b76bd1-af6d-4828-8125-76e6b9f8486b",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"state\": 1,\n    \"threads\": 1,\n    \"target_name\": \"default\",\n    \"type\": \"snowflake\",\n    \"schema\": \"dbt_username\",\n    \"auth_type\": \"password\",\n    \"user\": \"<username>\",\n    \"password\": \"<password>\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/credentials/{{credentials_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "credentials",
+                                "{{credentials_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Developer Credentials - Bigquery",
+                    "id": "3c9681cd-c0ff-48b6-9b0e-16ce34e6e915",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": {{credentials_id}},\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"type\": \"bigquery\",\n    \"state\": 1,\n    \"threads\": 4,\n    \"schema\": \"<your-development-schema>\",\n    \"target_name\": \"default\",\n    \"created_at\": null,\n    \"updated_at\": null,\n    \"username\": null,\n    \"has_refresh_token\": false\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/credentials/{{credentials_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "credentials",
+                                "{{credentials_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Developer Credentials - Databricks",
+                    "id": "233ca814-f32a-4777-9626-0643c7abe257",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": {{credentials_id}},\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"type\": \"adapter\",\n    \"state\": 1,\n    \"target_name\": \"default\",\n    \"threads\": 1,\n    \"adapter_id\": 1628,\n    \"credential_details\": {\n        \"fields\": {\n            \"token\": {\n                \"metadata\": {\n                    \"label\": \"Token\",\n                    \"description\": \"Personalized user token.\",\n                    \"field_type\": \"text\",\n                    \"encrypt\": true,\n                    \"validation\": {\n                        \"required\": false\n                    }\n                },\n                \"value\": \"<your-token-text>\"\n            },\n            \"schema\": {\n                \"metadata\": {\n                    \"label\": \"Schema\",\n                    \"description\": \"Users schema.\",\n                    \"field_type\": \"text\",\n                    \"encrypt\": false,\n                    \"validation\": {\n                        \"required\": false\n                    }\n                },\n                \"value\": \"<your-development-schema>\"\n            }\n        },\n        \"field_order\": []\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/credentials/{{credentials_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "credentials",
+                                "{{credentials_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Developer Credentials - Redshift",
+                    "id": "eba7df1f-72d5-43d9-b997-0c09b0bdee27",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": {{credentials_id}},\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"type\": \"redshift\",\n    \"state\": 1,\n    \"threads\": 1,\n    \"username\": \"<your-username>\",\n    \"default_schema\": \"dbt_<your-username>\",\n    \"target_name\": \"default\",\n    \"created_at\": \"2021-07-14 19:30:31.228947+00:00\",\n    \"updated_at\": \"2021-07-14 19:30:31.228966+00:00\",\n    \"password\": \"<your-password>\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/credentials/{{credentials_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "credentials",
+                                "{{credentials_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Repository",
+                    "id": "191f3cb2-5263-4661-b773-1cd4335701a7",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": 1,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"full_name\": \"your-organization/dbt_workspace\",\n    \"remote_url\": \"git@github.com:your-organization/dbt_workspace.git\",\n    \"remote_backend\": null,\n    \"git_clone_strategy\": \"deploy_key\",\n    \"deploy_key_id\": {{deploy_key_id}},\n    \"repository_credentials_id\": null,\n    \"github_installation_id\": null,\n    \"pull_request_url_template\": \"https://github.com/your-organization/dbt_workspace/compare/{{destination}}...{{source}}\",\n    \"state\": 1,\n    \"created_at\": \"2022-03-14 19:59:09.402823+00:00\",\n    \"updated_at\": \"2022-03-14 19:59:09.402838+00:00\",\n    \"deploy_key\": {\n        \"id\": {{deploy_key_id}},\n        \"account_id\": {{account_id}},\n        \"state\": 1,\n        \"public_key\": \"ssh-rsa XXXX\"\n    },\n    \"github_repo\": \"your-organization/dbt_workspace\",\n    \"name\": \"dbt_workspace\",\n    \"git_provider_id\": 6547,\n    \"gitlab\": null,\n    \"git_provider\": null\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/repositories/{{repository_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "repositories",
+                                "{{repository_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Update Job",
+                    "id": "10e98794-97b4-441e-88fc-c46b5bc9a3ef",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"execution\": {\n        \"timeout_seconds\": 0\n    },\n    \"generate_docs\": false,\n    \"id\": 2,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"environment_id\": 3,\n    \"name\": \"New Job UPDATED\",\n    \"dbt_version\": {{dbt_version}},\n    \"created_at\": \"2020-11-17T17:26:39.630214+00:00\",\n    \"updated_at\": \"{{$timestamp}}\",\n    \"execute_steps\": [\n        \"dbt seed\",\n        \"dbt run\"\n    ],\n    \"state\": 1,\n    \"deferring_job_definition_id\": null,\n    \"triggers\": {\n        \"github_webhook\": false,\n        \"custom_branch_only\": false,\n        \"schedule\": false\n    },\n    \"settings\": {\n        \"threads\": 1,\n        \"target_name\": \"default\"\n    },\n    \"schedule\": {\n        \"cron\": \"0 * * * *\",\n        \"date\": {\n            \"type\": \"every_day\"\n        },\n        \"time\": {\n            \"type\": \"every_hour\",\n            \"interval\": 1\n        }\n    },\n    \"generate_sources\": false,\n    \"cron_humanized\": \"Every hour\",\n    \"next_run\": null,\n    \"next_run_humanized\": null\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v2/accounts/{{account_id}}/jobs/{{job_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{account_id}}",
+                                "jobs",
+                                "{{job_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Assign Service Token Permissions",
+                    "id": "ff4e0867-1070-4b43-9d27-683fd94f3b23",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "[\n    {\n        \"service_token_id\": {{service_token_id}},\n        \"account_id\": {{account_id}},\n        \"permission_set\": \"job_viewer\",\n        \"project_id\": {{project_id}},\n        \"all_projects\": false\n    },\n    {\n        \"service_token_id\": {{service_token_id}},\n        \"account_id\": {{account_id}},\n        \"permission_set\": \"job_admin\",\n        \"project_id\": {{project_id}},\n        \"all_projects\": false\n    }\n]",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/service-tokens/{{service_token_id}}/permissions/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "service-tokens",
+                                "{{service_token_id}}",
+                                "permissions",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "1071a69c-831b-4122-8e6a-3018ac513ef8"
+        },
+        {
+            "name": "Test URIs",
+            "item": [
+                {
+                    "name": "Test Connection",
+                    "id": "d15a873b-5d55-4bdb-9bc9-26bacf62f0b8",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"connection\": {\n        \"id\": null,\n        \"state\": 1,\n        \"account_id\": {{account_id}},\n        \"project_id\": {{project_id}},\n        \"created_by_id\": 1,\n        \"details\": {\n            \"allow_sso\": false,\n            \"client_session_keep_alive\": true,\n            \"account\": \"your-snowflake-account-id\",\n            \"role\": \"your-snowflake-role\",\n            \"database\": \"your-snowflake-database\",\n            \"warehouse\": \"your-snowflake-warehouse\"\n        },\n        \"type\": \"snowflake\",\n        \"name\": \"Snowflake\"\n    },\n    \"credentials\": {\n        \"id\": null,\n        \"account_id\": 1,\n        \"project_id\": 3,\n        \"state\": 1,\n        \"threads\": 1,\n        \"target_name\": \"default\",\n        \"type\": \"snowflake\",\n        \"schema\": \"dbt_username\"\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/connections/test/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "connections",
+                                "test",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "9ae86fb2-f36f-4f23-9165-0b0e9ba06e4b"
+        },
+        {
+            "name": "Delete URIs",
+            "item": [
+                {
+                    "name": "Delete Environment",
+                    "id": "e47a0e80-210d-4889-9c99-721ee645635b",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/environments/{{environment_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "environments",
+                                "{{environment_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Environment Variable",
+                    "id": "5366c4d0-a158-4c39-908a-341110ca0825",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"DBT_MY_AWESOME_VARIABLE\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/v3/accounts/{{account_id}}/projects/{{project_id}}/environment-variables/bulk/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "environment-variables",
+                                "bulk",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Repository",
+                    "id": "ae0cb265-2513-4c25-9073-2b0c6db58d9d",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/repositories/{{repository_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "repositories",
+                                "{{repository_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Job",
+                    "id": "b5c16db0-6f24-45f6-905f-95e896fa6892",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/jobs/{{job_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "jobs",
+                                "{{job_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Project",
+                    "id": "ce3018ce-2872-4d3d-89a9-1b65d9c4f588",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                                "key": "Authorization",
+                                "value": "Token <ENTER_API_TOKEN>",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Connection",
+                    "id": "92fb3cc6-62cf-43ef-b182-286f2da1712d",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+                                "key": "Authorization",
+                                "value": "Token <ENTER_API_TOKEN>",
+                                "type": "text"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/connections/{{connection_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "connections",
+                                "{{connection_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete User Groups",
+                    "id": "d499059d-2f0d-47a8-95bb-73b63e97a9d9",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"account_id\":{{account_id}},\n    \"name\":\"<group-name>\",\n    \"id\": {{group_id}},\n    \"state\":2, /*this is a soft delete making the group inactive*/\n    \"assign_by_default\":false,\n    \"sso_mapping_groups\":[]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/v3/accounts/{{account_id}}/groups/{{group_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "groups",
+                                "{{group_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Deactivate User License",
+                    "id": "ba3667e8-c61d-418c-88ea-a889051184f0",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"license_type\": \"developer\",\n    \"id\": {{license_id}},\n    \"user_id\": {{user_id}},\n    \"account_id\": {{account_id}},\n    \"state\": 2,\n    \"created_at\": \"2021-03-02T05:14:58.226064+00:00\",\n    \"updated_at\": \"2021-04-21T23:43:49.199363+00:00\",\n    \"groups\": [\n        {\n            \"account_id\": {{account_id}},\n            \"name\": \"Developers\",\n            \"id\": {{group_id}},\n            \"state\": 1,\n            \"assign_by_default\": false,\n            \"sso_mapping_groups\": [],\n            \"created_at\": \"2020-12-11 23:12:59.286144+00:00\",\n            \"updated_at\": \"2021-02-22 16:51:10.790557+00:00\",\n            \"group_permissions\": [\n                {\n                    \"account_id\": {{account_id}},\n                    \"group_id\": {{group_id}},\n                    \"project_id\": null,\n                    \"all_projects\": true,\n                    \"permission_set\": \"developer\",\n                    \"permission_level\": null,\n                    \"id\": {{permission_id}},\n                    \"state\": 1,\n                    \"created_at\": \"2020-12-11 23:12:59.448626+00:00\",\n                    \"updated_at\": \"2021-02-22 16:51:10.792311+00:00\"\n                }\n            ]\n        },\n        {\n            \"account_id\": {{account_id}},\n            \"name\": \"admin-test-group\",\n            \"id\": {{group_id}},\n            \"state\": 1,\n            \"assign_by_default\": false,\n            \"sso_mapping_groups\": [\n                \"admin-test-group\"\n            ],\n            \"created_at\": \"2021-02-17 01:16:02.354412+00:00\",\n            \"updated_at\": \"2021-04-21 18:57:38.787887+00:00\",\n            \"group_permissions\": [\n                {\n                    \"account_id\": {{account_id}},\n                    \"group_id\": {{group_id}},\n                    \"project_id\": null,\n                    \"all_projects\": true,\n                    \"permission_set\": \"admin\",\n                    \"permission_level\": null,\n                    \"id\": {{permission_id}},\n                    \"state\": 1,\n                    \"created_at\": \"2021-04-21 18:57:29.396671+00:00\",\n                    \"updated_at\": \"2021-04-21 18:57:39.161700+00:00\"\n                }\n            ]\n        }\n    ],\n    \"permission_statements\": [\n        {\n            \"permission\": \"invitations_read\",\n            \"target_resource\": {{account_id}},\n            \"all_resources\": false\n        },\n        {\n            \"permission\": \"members_read\",\n            \"target_resource\": {{account_id}},\n            \"all_resources\": false\n        },\n        {\n            \"permission\": \"license_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"groups_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"projects_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"environments_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"dbt_adapters_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"connections_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"jobs_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"repositories_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"runs_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"credentials_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"environments_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"projects_develop\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"credentials_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"jobs_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"runs_trigger\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"runs_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"develop_access\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"permissions_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"account_settings_read\",\n            \"target_resource\": {{account_id}},\n            \"all_resources\": false\n        },\n        {\n            \"permission\": \"invitations_send\",\n            \"target_resource\": {{account_id}},\n            \"all_resources\": false\n        },\n        {\n            \"permission\": \"invitations_modify\",\n            \"target_resource\": {{account_id}},\n            \"all_resources\": false\n        },\n        {\n            \"permission\": \"invitations_read\",\n            \"target_resource\": {{account_id}},\n            \"all_resources\": false\n        },\n        {\n            \"permission\": \"members_read\",\n            \"target_resource\": {{account_id}},\n            \"all_resources\": false\n        },\n        {\n            \"permission\": \"members_write\",\n            \"target_resource\": {{account_id}},\n            \"all_resources\": false\n        },\n        {\n            \"permission\": \"license_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"license_allocate\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"groups_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"projects_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"projects_develop\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"projects_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"projects_delete\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"environments_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"environments_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"dbt_adapters_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"dbt_adapters_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"connections_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"connections_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"jobs_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"jobs_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"repositories_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"repositories_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"runs_trigger\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"runs_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"runs_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"credentials_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"credentials_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"develop_access\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"permissions_write\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        },\n        {\n            \"permission\": \"permissions_read\",\n            \"target_resource\": null,\n            \"all_resources\": true\n        }\n    ]\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/v2/accounts/{{account_id}}/permissions/{{license_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "v2",
+                                "accounts",
+                                "{{account_id}}",
+                                "permissions",
+                                "{{license_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "44ee041b-aece-4966-a986-6af8f7b371f9"
+        },
+        {
+            "name": "Workflow - Create Project/Environment/Job from Scratch",
+            "item": [
+                {
+                    "name": "Create Project",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "id": "e61eb7bb-af9a-477d-b3d8-ec63dd4b7888",
+                                "exec": [
+                                    "pm.test(\"Successful POST request.\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.error).to.be.undefined",
+                                    "});",
+                                    "",
+                                    "let response = pm.response.json();",
+                                    "pm.environment.set(\"project_id\", response['data']['id']);"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "id": "9146dec2-354b-4833-808a-2dc8b1547654",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "apikey",
+                            "apikey": [
+                                {
+                                    "key": "value",
+                                    "value": "Token {{api_key}}",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "key",
+                                    "value": "Authorization",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"name\": \"test-postman-generated\",\n    \"dbt_project_subdirectory\": null,\n    \"account_id\": {{account_id}},\n    \"connection_id\": null,\n    \"repository_id\": null\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Repository with Deploy Key",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "id": "44a7e558-b395-4c52-96fa-da53b88d6174",
+                                "exec": [
+                                    "pm.test(\"Successful POST request.\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.error).to.be.undefined",
+                                    "});",
+                                    "",
+                                    "let response = pm.response.json();",
+                                    "pm.environment.set(\"repository_id\", response['data']['id']);"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "id": "8bac4585-e6c7-440c-925d-0560bf72dbff",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "apikey",
+                            "apikey": [
+                                {
+                                    "key": "value",
+                                    "value": "Token {{api_key}}",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "key",
+                                    "value": "Authorization",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"remote_url\":\"git@github.com:matt-winkler/dbt-cloud-api-postman.git\",\n    \"git_clone_strategy\": \"deploy_key\",\n    \"github_installation_id\": null,\n    \"token_str\": null\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/repositories/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "repositories",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Connection - Snowflake",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "id": "d7bb089f-c456-4cca-ab0e-1e756b733dfa",
+                                "exec": [
+                                    "pm.test(\"Successful POST request.\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.error).to.be.undefined",
+                                    "});",
+                                    "",
+                                    "let response = pm.response.json();",
+                                    "pm.environment.set(\"connection_id\", response['data']['id']);"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "id": "801c7d8e-0dcc-4d44-9f33-fcf42b30460a",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "apikey",
+                            "apikey": [
+                                {
+                                    "key": "value",
+                                    "value": "Token {{api_key}}",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "key",
+                                    "value": "Authorization",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"name\": \"test\",\n    \"type\": \"snowflake\",\n    \"details\": {\n        \"account\": \"<your-snowflake-account-id>\",\n        \"role\": \"<your-snowflake-role\",\n        \"database\": \"<your-snowflake-database\",\n        \"warehouse\": \"<your-snowflake-warehouse\",\n        \"oauth_client_id\": null,\n        \"oauth_client_secret\": null,\n        \"client_session_keep_alive\": false,\n        \"allow_sso\": false\n    },\n    \"state\": 1,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/connections/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "connections",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Associate Connection and Repository with Project",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "id": "27314120-eee9-46ef-92ed-d7eac100506d",
+                                "exec": [
+                                    "pm.test(\"Successful POST request.\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.error).to.be.undefined",
+                                    "});",
+                                    ""
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "id": "8e805ed7-499e-419c-9ffb-0373dab83f22",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "apikey",
+                            "apikey": [
+                                {
+                                    "key": "value",
+                                    "value": "Token {{api_key}}",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "key",
+                                    "value": "Authorization",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"name\": \"test-postman-generated\",\n    \"account_id\": {{account_id}},\n    \"repository_id\": {{repository_id}},\n    \"connection_id\": {{connection_id}},\n    \"id\": {{project_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Development Environment",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "id": "27314120-eee9-46ef-92ed-d7eac100506d",
+                                "exec": [
+                                    "pm.test(\"Successful POST request.\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.error).to.be.undefined",
+                                    "});"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "id": "d091df53-b532-43b4-b4a1-5174c0853e9e",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "apikey",
+                            "apikey": [
+                                {
+                                    "key": "value",
+                                    "value": "Token {{api_key}}",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "key",
+                                    "value": "Authorization",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"type\": \"development\",\n    \"name\": \"<my-dev-environment>\",\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"state\": 1,\n    \"use_custom_branch\": false,\n    \"custom_branch\": null,\n    \"dbt_version\": \"1.0.0\",\n    \"supports_docs\": false\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/environments/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "environments",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Deployment Credentials",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "id": "27314120-eee9-46ef-92ed-d7eac100506d",
+                                "exec": [
+                                    "pm.test(\"Successful POST request.\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.error).to.be.undefined",
+                                    "});",
+                                    "",
+                                    "let response = pm.response.json();",
+                                    "pm.environment.set(\"credentials_id\", response['data']['id']);"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "id": "125e3b2f-2955-4877-aa7b-054d2cb696f8",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "apikey",
+                            "apikey": [
+                                {
+                                    "key": "value",
+                                    "value": "Token {{api_key}}",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "key",
+                                    "value": "Authorization",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"type\": \"snowflake\",\n    \"state\": 1,\n    \"threads\": 4,\n    \"auth_type\": \"password\",\n    \"user\": \"<username>\",\n    \"password\": \"<password>\",\n    \"schema\": \"<default-deployment-schema>\"\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/credentials/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                "credentials",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Deployment Environment Copy",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "id": "27314120-eee9-46ef-92ed-d7eac100506d",
+                                "exec": [
+                                    "pm.test(\"Successful POST request.\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.error).to.be.undefined",
+                                    "});",
+                                    "",
+                                    "let response = pm.response.json();",
+                                    "pm.environment.set(\"environment_id\", response['data']['id']);"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "id": "e6e0ce9f-583f-41e1-aa43-ed0d739fb5ec",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "apikey",
+                            "apikey": [
+                                {
+                                    "key": "value",
+                                    "value": "Token {{api_key}}",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "key",
+                                    "value": "Authorization",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"id\": null,\n    \"type\": \"deployment\",\n    \"name\": \"<my-deployment-env>\",\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"state\": 1,\n    \"use_custom_branch\": false,\n    \"custom_branch\": null,\n    \"dbt_version\": \"1.0.0\",\n    \"supports_docs\": false,\n    \"credentials_id\": {{credentials_id}}\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/environments/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "environments",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Create Job",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "id": "27314120-eee9-46ef-92ed-d7eac100506d",
+                                "exec": [
+                                    "pm.test(\"Successful POST request.\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.error).to.be.undefined",
+                                    "});",
+                                    "",
+                                    "let response = pm.response.json();",
+                                    "pm.environment.set(\"job_id\", response['data']['id']);"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "id": "c8ee5eaa-e2ab-4dbb-b54f-c61c220aa3df",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "apikey",
+                            "apikey": [
+                                {
+                                    "key": "value",
+                                    "value": "Token {{api_key}}",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "key",
+                                    "value": "Authorization",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"account_id\": {{account_id}},\n    \"project_id\": {{project_id}},\n    \"id\": null,\n    \"environment_id\": {{environment_id}},\n    \"name\": \"<my-dbt-job>\",\n    \"dbt_version\": \"1.0.1\",\n    \"triggers\": {\n      \"github_webhook\": false,\n      \"schedule\": false,\n      \"custom_branch_only\": false\n    },\n    \"execute_steps\": [\n      \"dbt build\"\n    ],\n    \"settings\": {\n      \"threads\": 1,\n      \"target_name\": \"default\"\n    },\n    \"state\": 1,\n    \"generate_docs\": false,\n    \"schedule\": {\n        \"date\": {\n            \"type\": \"every_day\"\n        },\n        \"time\": {\n            \"type\": \"every_hour\",\n            \"interval\": 1\n        }\n    }\n}",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v2/accounts/{{account_id}}/jobs/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v2",
+                                "accounts",
+                                "{{account_id}}",
+                                "jobs",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Delete Project",
+                    "event": [
+                        {
+                            "listen": "test",
+                            "script": {
+                                "id": "e61eb7bb-af9a-477d-b3d8-ec63dd4b7888",
+                                "exec": [
+                                    "pm.test(\"Successful POST request.\", function () {",
+                                    "    var jsonData = pm.response.json();",
+                                    "    pm.expect(jsonData.error).to.be.undefined",
+                                    "});",
+                                    "",
+                                    "let response = pm.response.json();",
+                                    "pm.environment.set(\"project_id\", response['data']['id']);"
+                                ],
+                                "type": "text/javascript"
+                            }
+                        }
+                    ],
+                    "id": "f4a0b566-7ba3-4475-8b90-34f393e2a423",
+                    "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                    },
+                    "request": {
+                        "auth": {
+                            "type": "apikey",
+                            "apikey": [
+                                {
+                                    "key": "value",
+                                    "value": "Token {{api_key}}",
+                                    "type": "string"
+                                },
+                                {
+                                    "key": "key",
+                                    "value": "Authorization",
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "",
+                            "options": {
+                                "raw": {
+                                    "language": "json"
+                                }
+                            }
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/api/v3/accounts/{{account_id}}/projects/{{project_id}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "v3",
+                                "accounts",
+                                "{{account_id}}",
+                                "projects",
+                                "{{project_id}}",
+                                ""
+                            ]
+                        }
+                    },
+                    "response": []
+                }
+            ],
+            "id": "e0809a9d-4dad-4908-9c9f-c0fcde2221ef"
+        }
+    ],
+    "auth": {
+        "type": "apikey",
+        "apikey": [
+            {
+                "key": "key",
+                "value": "Authorization",
+                "type": "string"
+            },
+            {
+                "key": "value",
+                "value": "Token abc123",
+                "type": "string"
+            }
+        ]
+    },
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "id": "aa1bf156-8b33-40d4-9114-d86327e14def",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "id": "0873d5f8-62ba-4fb6-b1b8-46f3cc112de6",
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "id": "4dd71512-241c-447b-ac40-5afd143a5c28",
+            "key": "base_url",
+            "value": "<ENTER_BASE_URL>"
+        },
+        {
+            "id": "58accd81-2757-40a3-a444-804dcda1d8aa",
+            "key": "account_id",
+            "value": "1"
+        },
+        {
+            "id": "6a50efd8-286f-47eb-b6b3-cc642ea7cd8d",
+            "key": "project_id",
+            "value": "1"
+        },
+        {
+            "id": "fda3fa1b-92b9-409b-be76-086bbc79bf41",
+            "key": "environment_id",
+            "value": "1"
+        },
+        {
+            "id": "7c5c7240-580e-4e25-893c-2d8a29e158e9",
+            "key": "connection_id",
+            "value": "1"
+        },
+        {
+            "id": "6d158982-2d00-4cbb-a931-cf2b9947f532",
+            "key": "repository_id",
+            "value": "1"
+        },
+        {
+            "id": "5494619d-2e5b-451e-88fa-746563f7e963",
+            "key": "user_id",
+            "value": "1"
+        },
+        {
+            "id": "9d2511f8-010e-46d9-b92f-d42ee8ae5b24",
+            "key": "run_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "id": "233aa90e-21cc-4b6b-bce0-52ce00c728c4",
+            "key": "step_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "id": "0b9e64da-2a16-4773-81dd-7760693afe45",
+            "key": "gitlab_project_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "id": "b9661d5c-4c46-4060-8b0f-fe8d2ddd4cb0",
+            "key": "github_installation_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "id": "3a5b62c6-6f30-4dd0-965b-d9297557e2f5",
+            "key": "dbt_version",
+            "value": "1.0.1",
+            "type": "string"
+        },
+        {
+            "id": "bd6fc9fb-9913-4c7e-81e1-e61090e1e3b2",
+            "key": "job_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "id": "09ca1079-b882-48a2-9be4-b660651ac058",
+            "key": "credentials_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "id": "cdecb8a5-e4e0-4998-8951-dbefb8e8c07d",
+            "key": "service_token_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "id": "c8cc606c-4d85-4a82-9dee-57746a43fc29",
+            "key": "group_id",
+            "value": "1",
+            "type": "string"
+        },
+        {
+            "id": "50277ca1-d9c4-4774-925c-9e7f67f14ab4",
+            "key": "license_id",
+            "value": "1",
+            "type": "string"
+        }
+    ]
+}
