@@ -2356,7 +2356,7 @@
                         "method": "GET",
                         "header": [],
                         "url": {
-                            "raw": "{{base_url}}/api/v2/accounts/{{account_id}}/jobs/runs/{{run_id}}/artifacts/manifest.json",
+                            "raw": "{{base_url}}/api/v2/accounts/{{account_id}}/runs/{{run_id}}/artifacts/manifest.json",
                             "host": [
                                 "{{base_url}}"
                             ],
@@ -2365,7 +2365,6 @@
                                 "v2",
                                 "accounts",
                                 "{{account_id}}",
-                                "jobs",
                                 "runs",
                                 "{{run_id}}",
                                 "artifacts",
@@ -2392,7 +2391,7 @@
                             }
                         ],
                         "url": {
-                            "raw": "{{base_url}}/api/v2/accounts/{{account_id}}/jobs/runs/{{run_id}}/artifacts/catalog.json",
+                            "raw": "{{base_url}}/api/v2/accounts/{{account_id}}/runs/{{run_id}}/artifacts/catalog.json",
                             "host": [
                                 "{{base_url}}"
                             ],
@@ -2401,7 +2400,6 @@
                                 "v2",
                                 "accounts",
                                 "{{account_id}}",
-                                "jobs",
                                 "runs",
                                 "{{run_id}}",
                                 "artifacts",
@@ -3557,108 +3555,108 @@
     ],
     "variable": [
         {
-            "id": "72b17730-bdfc-415a-8e1e-30a1290ee7bf",
+            "id": "5c3dd3e1-e68d-492c-a694-8ee341b1e20f",
             "key": "base_url",
             "value": "<ENTER_BASE_URL>"
         },
         {
-            "id": "2a3b3ee0-ce8c-4987-bcdf-921fdd65486b",
+            "id": "cfd7c916-599d-42f6-9983-060a653dae87",
             "key": "account_id",
             "value": "1"
         },
         {
-            "id": "4358a87d-94ec-48d4-b7e3-f3878bbd9feb",
+            "id": "a53acec0-67cc-46e9-a2ea-d2d658d4adb2",
             "key": "project_id",
             "value": "1"
         },
         {
-            "id": "d0ae7056-85a0-4108-bec3-ad976a86557e",
+            "id": "2d4c7163-e832-4c23-8573-df4370ffd40c",
             "key": "environment_id",
             "value": "1"
         },
         {
-            "id": "562e5951-3c65-4e2a-8924-71a5dbe67a3e",
+            "id": "55392036-609b-483e-bfd5-fb60b2941401",
             "key": "connection_id",
             "value": "1"
         },
         {
-            "id": "16d89488-4209-4090-be01-12352df003c1",
+            "id": "d06b6a89-3e3d-4c94-ae93-1a9614a87bb2",
             "key": "repository_id",
             "value": "1"
         },
         {
-            "id": "321c9273-a036-41a1-9a92-8726bf66264a",
+            "id": "dcb927a9-bf82-4d6d-8edb-7a241d784195",
             "key": "user_id",
             "value": "1"
         },
         {
-            "id": "887d64b5-375c-4850-bb63-7d5060c5e0f8",
+            "id": "bfba7a70-ef39-4a78-9249-c9dbf52a87d6",
             "key": "run_id",
             "value": "1",
             "type": "string"
         },
         {
-            "id": "96359a13-3342-4fad-ae0d-6a4cecca1164",
+            "id": "3e9b792b-b1a0-4444-9b02-d74b4e56529a",
             "key": "step_id",
             "value": "1",
             "type": "string"
         },
         {
-            "id": "74354720-8df0-453f-b0e1-faa00073531a",
+            "id": "1690600f-bf69-4587-b713-063cc8f0c51d",
             "key": "gitlab_project_id",
             "value": "1",
             "type": "string"
         },
         {
-            "id": "f1875459-0f63-4596-b774-25c2b151e8c3",
+            "id": "ba40c71c-fa7f-409e-94fe-468a05fd6e12",
             "key": "github_installation_id",
             "value": "1",
             "type": "string"
         },
         {
-            "id": "018b0a6a-8129-4d4b-828e-bf89b51294fa",
+            "id": "5f8bde59-fc7b-4b9c-8f08-c363c5cf6bda",
             "key": "dbt_version",
             "value": "1.0.1",
             "type": "string"
         },
         {
-            "id": "a8e75747-b44a-42c0-836e-195416a31528",
+            "id": "e0e0bbf3-50e8-4e08-a43d-89afa136bbda",
             "key": "job_id",
             "value": "1",
             "type": "string"
         },
         {
-            "id": "b9da5793-f2de-4159-8d84-a2c139d21c21",
+            "id": "e286b8bb-c60b-4362-b911-3160796efc0e",
             "key": "credentials_id",
             "value": "1",
             "type": "string"
         },
         {
-            "id": "ade0f735-442f-40e8-87dc-0fa2ee077e2e",
+            "id": "c274c827-0e8e-40b4-8fa6-ccb8d75b0a1e",
             "key": "service_token_id",
             "value": "1",
             "type": "string"
         },
         {
-            "id": "c9cba810-950a-45d9-9269-4985808acc5e",
+            "id": "3752fa30-6e20-4248-b453-86cbfd751d55",
             "key": "group_id",
             "value": "1",
             "type": "string"
         },
         {
-            "id": "c6cedc16-2e8c-4348-8bb1-fba0df6adb50",
+            "id": "de0e4683-7f9d-4f2d-ae2d-d9c9ba8c9b1b",
             "key": "license_id",
             "value": "1",
             "type": "string"
         },
         {
-            "id": "d5bcf0d6-1e48-46f3-b878-fb1c2c24c192",
+            "id": "8d5cd55e-f309-470d-af1c-d2bc744b9414",
             "key": "deploy_key_id",
             "value": "1",
             "type": "string"
         },
         {
-            "id": "de0cfcee-018c-4b4c-9dfb-f52aeddcf873",
+            "id": "61733530-bcc2-4ac4-b71c-97136d0ba5c0",
             "key": "git_provider_id",
             "value": "1",
             "type": "string"
